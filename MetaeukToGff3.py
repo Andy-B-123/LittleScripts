@@ -37,7 +37,7 @@ with open(filename_infile) as infile:
 
 
 with open(output_filename, 'w') as f:
-	f.write("#gff_version\n")
+	f.write("##gff_version 3\n")
 
 	for entry in initial_list:
 		entry_list = (entry.split("|",8)) 	#Use only the first 8 fields as they are constant. The last contains the the number of exon, which can vary
