@@ -1,10 +1,14 @@
+#Update1: I'm aware more people are using this script and have commented out the troubleshooting library icecream which is not standard for Python/3.7.2 where I was developing this script :-)
+#
 #Convert the information in the header for the output file generated from MetaEuk to a gff3 format
-#The header provides two co-ordinates for each protein. I have provided both co-ordinates but checking manually it appears that the CDS annotation represents the 
-#output from MetaEuk the best.
+#Requires python3
+#Usage:
+#	python MetaeukToGff3.py --MetaEuk_fas_output [output from metaeuk predict, required] --gff3_output_filename [desired output filename, default is input filename replacing suffix fas with gff3]
+#The header provides two co-ordinates for each protein. I have provided both co-ordinates but checking manually it appears that the CDS annotation represents the output from MetaEuk the best.
 
 import glob
 import sys
-from icecream import ic 
+#from icecream import ic 
 from pathlib import Path
 import argparse
 
@@ -41,7 +45,7 @@ with open(output_filename, 'w') as f:
 
 	for entry in initial_list:
 		entry_list = (entry.split("|",8)) 	#Use only the first 8 fields as they are constant. The last contains the the number of exon, which can vary
-		ic(entry_list)
+#		ic(entry_list)
 
 		#below are the standard items for each entry
 		entry_seqid = entry_list[1]
@@ -114,7 +118,7 @@ with open(output_filename, 'w') as f:
 	
 			gene = [entry_seqid,entry_source,'gene',(int(entry_list[6]) + adjust_on_strand),(int(entry_list[7]) +adjust_on_strand),\
 				entry_score,entry_strand,'.','ID=' + entry_list[0]]
-			ic(gene)
+#			ic(gene)
 			for item in gene:
 				f.write(str(item) + '\t')
 			f.write('\n')
