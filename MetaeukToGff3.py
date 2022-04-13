@@ -29,7 +29,7 @@ output_filename=args.gff3_output_filename
 # Make output file
 if output_filename == '':
 	output_filename = filename_infile.replace("." + filename_infile.split(".")[-1], ".gff3")
-ic(output_filename)
+#ic(output_filename)
 
 
 initial_list = []
